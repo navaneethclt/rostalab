@@ -1,0 +1,6 @@
+<launch>
+	
+	<node name="EulerPos" pkg="qt_nav" type="quaternion_to_euler.py" > 
+	  	
+	</node>
+</launch>

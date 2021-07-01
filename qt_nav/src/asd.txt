@@ -1,0 +1,29 @@
+pos_msg = Twist()
+[pos_x,pos_y,pos_z,roll, pitch, yaw] = [0,0,0,0,0,0]
+def get_rotation (self,msg):
+    global pos_x,pos_y,pos_z,roll, pitch, yaw
+    orientation_q = msg.pose.pose.orientation
+    position = msg.pose.pose.position
+    orientation_list = [orientation_q.x, orientation_q.y, orientation_q.z, orientation_q.w]
+    (roll, pitch, yaw) = euler_from_quaternion (orientation_list)
+    pos_x = position.x
+    pos_y = position.y
+    pos_z = position.z
+   # print(pos_x)
+
+rospy.init_node('my_quaternion_to_euler')
+
+sub = rospy.Subscriber ('/odom', Odometry, get_rotation)
+pos_msg.linear.x = yaw
+pos_msg.linear.y = pos_y
+pos_msg.linear.z = pos_z
+
+pos_msg.angular.x = pitch
+pos_msg.angular.y = roll
+pos_msg.angular.z = yaw
+
+pub = rospy.Publisher('EulerAngles',Twist,queue_size = 1)
+r = rospy.Rate(1)
+while not rospy.is_shutdown():
+    pub.publish(pos_msg)
+    r.sleep()
