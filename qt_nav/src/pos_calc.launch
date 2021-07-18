@@ -1,0 +1,6 @@
+<launch>
+	
+	<node name="my_Position_calc" pkg="qt_nav" type="position_calc.py" > 
+	  	
+	</node>
+</launch>
