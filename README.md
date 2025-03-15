@@ -91,6 +91,9 @@ include_directories(${catkin_INCLUDE_DIRS})
 add_executable(highlevel_controller src/HighlevelController.cpp)
 target_link_libraries(highlevel_controller ${catkin_LIBRARIES})
 ```
+## Video Demonstration  
+[![Watch the video](https://img.youtube.com/vi/dzT1IAFJenI/0.jpg)](https://www.youtube.com/shorts/dzT1IAFJenI)
+```
 
 ---
 
